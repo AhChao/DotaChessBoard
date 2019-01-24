@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html style="background-color: #1C2122;color: #FFFFFF;">
+<meta name="viewport" content="width=device-width"> 
 <head>
 	<title>Dota Auto Chess Board</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
 	<h1 id="pageTitle">刀塔自走棋記錄板</h1>
@@ -12,15 +14,62 @@
           <option value="1">English</option>
         </select>                
     </div>
-	<h2  style="display : inline;" id="fieldText">場上</h2>
-	<button id="addBtn" style="font-size: 16px;background-color: #000000;color: #FFFFFF;">添加棋子</button>
+	<h2 id="fieldText">場上</h2>
+		<table id="fieldTable">
+		</table>
+	<button id="addBtn" onclick="addBtnClick()" style="font-size: 16px;background-color: #000000;color: #FFFFFF;">添加棋子</button>
+		<div id="addDiv" style="display: none;">
+			<select id="optRarity" onchange="languageSwitch(this.value)">稀有度
+                  <option value="0" selected="selected">全部稀有度</option>
+                  <option value="1" style="color: grey;">★</option>
+                  <option value="2" style="color: #9370DB;">★★</option>
+                  <option value="3" style="color: #4169E1;">★★★</option>
+                  <option value="4" style="color: #FF00FF;">★★★★</option>
+                  <option value="5" style="color: #FF8C00;">★★★★★</option>
+            </select>
+            <select id="optRace" onchange="languageSwitch(this.value)">種族
+            		<option value="0" selected="selected">全部種族</option>
+            		<option value="1" style="color: #2A8501;">野獸</option>
+					<option value="2" style="color: #3D3E3E;">亡靈</option>
+					<option value="3" style="color: #4747C7;">娜迦</option>
+					<option value="4" style="color: #D20003;">龍</option>
+					<option value="5" style="color: #000000;">人類</option>
+					<option value="6" style="color: #E5012A;">獸人</option>
+					<option value="7" style="color: #0178E1;">精靈</option>
+					<option value="8" style="color: #919265;">巨魔</option>
+					<option value="9" style="color: #FFD700	;">元素</option>
+					<option value="10" style="color: #E5012A;">矮人</option>
+            </select>
+            <select id="optJob" onchange="languageSwitch(this.value)">職業
+            		<option value="0" selected="selected">全部職業</option>
+            		<option value="1" style="color: #B38C62;">戰士</option>
+					<option value="2" style="color: #68CCEF;">法師</option>
+					<option value="3" style="color: #E7DD5D;">刺客</option>
+					<option value="4" style="color: #98BD65;">獵人</option>
+					<option value="5" style="color: #E382AD;">騎士</option>
+					<option value="6" style="color: #E9720F;">德魯伊</option>
+					<option value="7" style="color: #9382C9;">術士</option>
+					<option value="8" style="color: #1336A2;">薩滿祭司</option>
+					<option value="9" style="color: #360E43;">惡魔獵手</option>
+            </select>            
+			<button onclick="refreshAddTable()" style="font-size: 16px;background-color: #000000;color: #FFFFFF;">搜尋</button>
+			<button onclick="clearFilter()" style="font-size: 16px;background-color: #000000;color: #FFFFFF;">清除</button>
+			<div id="addTableDiv"></div>
+		</div>
+	<div>
+	</div>
 	<hr></hr>
 	<div>
-	<h2 id="fieldAblity">場上能力</h2>
+	<h2 id="fieldAblity">場上能力</h2>	
 	<h3 ><text id="raceText" onclick="switchAblity(0)" style="color:#FF0000">種族</text> / <text id="jobText" onclick="switchAblity(1)">職業</text></h3>
 		<div id="raceCountText">
 			<text style="font-weight: bold;font-size: 18px; text-shadow: black 0.1em 0.1em 0.2em;">
-				<text style="color: #CA3117;">地精</text><br>
+				<text style="color: #CA3117;">地精</text>
+					<div id="gnomeLine" class="colorprogress" >
+					  <div id="gnomeBar" class="pbar" style="background-color: #CA3117;">
+					    <div id="gnomeLabel" >0/6</div>
+					  </div>
+					</div>
 				<text style="color: #2A8501;">野獸</text><br>
 				<text style="color: #3D3E3E;">亡靈</text><br>
 				<text style="color: #4747C7;">娜迦</text><br>

@@ -1,0 +1,11 @@
+.colorprogress {
+    position: relative;
+    width: 150px;
+    height: 25px;
+    background-color: grey;
+}
+.pbar {
+    position: absolute;
+    width: 1%;
+    height: 100%;
+}

@@ -1,4 +1,5 @@
 var fieldChess = [];
+var nowLanguage = "ch";
 function switchAblity(tar)
 {
 	if(tar==1)
@@ -17,7 +18,7 @@ function switchAblity(tar)
 	}
 }
 
-//barMove('gnome',1,6)
+//barMove('goblin',1,6)
 //填充目標 目前長度 總長度
 function barMove(barName,now,target)
 {
@@ -59,7 +60,7 @@ function refreshFieldTable()
 		}
 		d3.select("#nowFTR").append("td").append("img").
 		attr({
-			"src":"./img/ch/"+fieldChess[i]+".png",
+			"src":"./img/"+nowLanguage+"/"+fieldChess[i]+".png",
 			"chessNo":fieldChess[i],
 			"onclick":"removeChess($(this).attr('chessNo'))",
 		});
@@ -133,7 +134,7 @@ function refreshAddTable()
 		}
 		d3.select("#nowATR").append("td").append("img").
 		attr({
-			"src":"./img/ch/"+tableContent[i]+".png",
+			"src":"./img/"+nowLanguage+"/"+tableContent[i]+".png",
 			"chessNo":tableContent[i],
 			"onclick":"addChess($(this).attr('chessNo'))",
 		});
@@ -170,7 +171,7 @@ function updateProgress()
 	var jobValue = [0,0,0,0,0,0,0,0,0,0];
 	var raceLimit = [0,6,6,4,4,3,6,4,6,4,2];
 	var jobLimit = [0,6,6,6,6,6,4,6,2,4];
-	var raceName = ["","gnome","beast","undead","naga","dragon","human","orc","elf","troll","element"];
+	var raceName = ["","goblin","beast","undead","naga","dragon","human","orc","elf","troll","element"];
 	var jobName = ["","warrior","mage","assassin","hunter","knight","druid","warlock","shaman","mech"];
 	for(var i in fieldChess)
 	{
@@ -192,7 +193,7 @@ function updateProgress()
 }
 
 function addBtnClick()
-{
+{	
 	if(d3.select("#addDiv").attr("style")==null)
 		d3.select("#addDiv").attr("style","display:none;");
 	else

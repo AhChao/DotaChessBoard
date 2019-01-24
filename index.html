@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html style="background-color: #1C2122;color: #FFFFFF;">
+<head>
+	<title>Dota Auto Chess Board</title>
+</head>
+<body>
+	<h1 id="pageTitle">刀塔自走棋記錄板</h1>
+	<div>
+        <h2 style="display : inline;">Language</h2>
+        <select id="languageSwitchSelect" onchange="languageSetting(this.value)">Language
+          <option value="0" selected="selected">Traditional Chinese</option>
+          <option value="1">English</option>
+        </select>                
+    </div>
+	<h2  style="display : inline;" id="fieldText">場上</h2>
+	<button id="addBtn" style="font-size: 16px;background-color: #000000;color: #FFFFFF;">添加棋子</button>
+	<hr></hr>
+	<div>
+	<h2 id="fieldAblity">場上能力</h2>
+	<h3 ><text id="raceText" onclick="switchAblity(0)" style="color:#FF0000">種族</text> / <text id="jobText" onclick="switchAblity(1)">職業</text></h3>
+		<div id="raceCountText">
+			<text style="font-weight: bold;font-size: 18px; text-shadow: black 0.1em 0.1em 0.2em;">
+				<text style="color: #CA3117;">地精</text><br>
+				<text style="color: #2A8501;">野獸</text><br>
+				<text style="color: #3D3E3E;">亡靈</text><br>
+				<text style="color: #4747C7;">娜迦</text><br>
+				<text style="color: #D20003;">龍</text><br>
+				<text style="color: #FFFFFF;">人類</text><br>
+				<text style="color: #E5012A;">獸人</text><br>
+				<text style="color: #0178E1;">精靈</text><br>
+				<text style="color: #919265;">巨魔</text><br>
+				<text style="color: #FEFE00;">元素</text><br>
+				<text style="color: #E5012A;">矮人</text><br>
+			</text>
+		</div>
+		<div id="jobCountText" style="display: none;">
+			<text style="font-weight: bold;font-size: 18px; text-shadow: black 0.1em 0.1em 0.2em;">	
+				<text style="color: #B38C62;">戰士</text><br>
+				<text style="color: #68CCEF;">法師</text><br>
+				<text style="color: #E7DD5D;">刺客</text><br>
+				<text style="color: #98BD65;">獵人</text><br>
+				<text style="color: #E382AD;">騎士</text><br>
+				<text style="color: #E9720F;">德魯伊</text><br>
+				<text style="color: #9382C9;">術士</text><br>
+				<text style="color: #1336A2;">薩滿祭司</text><br>
+				<text style="color: #360E43;">惡魔獵手</text><br>
+			</text>
+		</div>
+	</div>
+	<script src="lib/d3.v3.min.js"></script>
+	<script src="src/main.js"></script>
+	<script src="src/language.js"></script> 
+</body>
+</html>

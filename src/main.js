@@ -21,15 +21,22 @@ function switchAblity(tar)
 //填充目標 目前長度 總長度
 function barMove(barName,now,target)
 {
-	console.log(barName,now,target);
     var elem = document.getElementById(barName+"Bar"); 
     var width = 1;
     var id = setInterval(frame, 10);
     document.getElementById(barName+"Label").innerHTML = now +"/" + target;
     function frame() {
-        if (width >= ((now/target)*100)) {
+    	if (now == 0)
+    	{
+    		elem.style.width = width + '%'; 
+    		clearInterval(id);
+    	}
+        if (width >= ((now/target)*100)) 
+        {
             clearInterval(id);
-        } else {
+        }
+        else 
+        {
             width++; 
             elem.style.width = width + '%'; 
         }
@@ -172,7 +179,6 @@ function updateProgress()
 		for(var j in originData[fieldChess[i]][1])
 			jobValue[originData[fieldChess[i]][1][j]]++;
 	}
-	console.log("update",fieldChess,raceValue,jobValue);
 	for(var i in raceValue)
 	{
 		if(i==0) continue;

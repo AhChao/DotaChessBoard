@@ -25,6 +25,7 @@ function languageSetting(lan)
 	if(lan==0) nowLanguage="ch";
 	else nowLanguage="en";
 	refreshAddTable();
+	refreshFieldTable();
 	for(var i in settingList)
 	{
 		d3.select("#"+settingList[i]).text(pageText[lan][i]);

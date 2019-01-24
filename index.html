@@ -15,32 +15,32 @@
         </select>                
     </div>
 	<h2 id="fieldText">場上</h2>
-		<table id="fieldTable">
-		</table>
+		<div id="fieldTableDiv"></div>
 	<button id="addBtn" onclick="addBtnClick()" style="font-size: 16px;background-color: #000000;color: #FFFFFF;">添加棋子</button>
 		<div id="addDiv" style="display: none;">
-			<select id="optRarity" onchange="languageSwitch(this.value)">稀有度
+			<!--<select id="optRarity">稀有度
                   <option value="0" selected="selected">全部稀有度</option>
                   <option value="1" style="color: grey;">★</option>
                   <option value="2" style="color: #9370DB;">★★</option>
                   <option value="3" style="color: #4169E1;">★★★</option>
                   <option value="4" style="color: #FF00FF;">★★★★</option>
                   <option value="5" style="color: #FF8C00;">★★★★★</option>
-            </select>
-            <select id="optRace" onchange="languageSwitch(this.value)">種族
+            </select>-->
+            <select id="optRace" onchange="refreshAddTable()">種族
             		<option value="0" selected="selected">全部種族</option>
-            		<option value="1" style="color: #2A8501;">野獸</option>
-					<option value="2" style="color: #3D3E3E;">亡靈</option>
-					<option value="3" style="color: #4747C7;">娜迦</option>
-					<option value="4" style="color: #D20003;">龍</option>
-					<option value="5" style="color: #000000;">人類</option>
-					<option value="6" style="color: #E5012A;">獸人</option>
-					<option value="7" style="color: #0178E1;">精靈</option>
-					<option value="8" style="color: #919265;">巨魔</option>
-					<option value="9" style="color: #FFD700	;">元素</option>
-					<option value="10" style="color: #E5012A;">矮人</option>
+            		<option value="1" style="color: #CA3117;">地精</option>
+            		<option value="2" style="color: #2A8501;">野獸</option>
+					<option value="3" style="color: #3D3E3E;">亡靈</option>
+					<option value="4" style="color: #4747C7;">娜迦</option>
+					<option value="5" style="color: #D20003;">龍</option>
+					<option value="6" style="color: #000000;">人類</option>
+					<option value="7" style="color: #E5012A;">獸人</option>
+					<option value="8" style="color: #0178E1;">精靈</option>
+					<option value="9" style="color: #919265;">巨魔</option>
+					<option value="10" style="color: #FFD700;">元素</option>
+					<!--<option value="11" style="color: #E5012A;">矮人</option>-->
             </select>
-            <select id="optJob" onchange="languageSwitch(this.value)">職業
+            <select id="optJob" onchange="refreshAddTable()">職業
             		<option value="0" selected="selected">全部職業</option>
             		<option value="1" style="color: #B38C62;">戰士</option>
 					<option value="2" style="color: #68CCEF;">法師</option>
@@ -50,9 +50,9 @@
 					<option value="6" style="color: #E9720F;">德魯伊</option>
 					<option value="7" style="color: #9382C9;">術士</option>
 					<option value="8" style="color: #1336A2;">薩滿祭司</option>
-					<option value="9" style="color: #360E43;">惡魔獵手</option>
+					<option value="9" style="color: #B8860B;">工匠</option>
             </select>            
-			<button onclick="refreshAddTable()" style="font-size: 16px;background-color: #000000;color: #FFFFFF;">搜尋</button>
+			<!--<button onclick="refreshAddTable()" style="font-size: 16px;background-color: #000000;color: #FFFFFF;">搜尋</button>-->
 			<button onclick="clearFilter()" style="font-size: 16px;background-color: #000000;color: #FFFFFF;">清除</button>
 			<div id="addTableDiv"></div>
 		</div>
@@ -63,40 +63,140 @@
 	<h2 id="fieldAblity">場上能力</h2>	
 	<h3 ><text id="raceText" onclick="switchAblity(0)" style="color:#FF0000">種族</text> / <text id="jobText" onclick="switchAblity(1)">職業</text></h3>
 		<div id="raceCountText">
+			<!--①②③④⑤⑥⑦-->
 			<text style="font-weight: bold;font-size: 18px; text-shadow: black 0.1em 0.1em 0.2em;">
-				<text style="color: #CA3117;">地精</text>
+				<text style="color: #CA3117;">地精 ③⑥</text>
 					<div id="gnomeLine" class="colorprogress" >
 					  <div id="gnomeBar" class="pbar" style="background-color: #CA3117;">
 					    <div id="gnomeLabel" >0/6</div>
 					  </div>
 					</div>
-				<text style="color: #2A8501;">野獸</text><br>
-				<text style="color: #3D3E3E;">亡靈</text><br>
-				<text style="color: #4747C7;">娜迦</text><br>
-				<text style="color: #D20003;">龍</text><br>
-				<text style="color: #FFFFFF;">人類</text><br>
-				<text style="color: #E5012A;">獸人</text><br>
-				<text style="color: #0178E1;">精靈</text><br>
-				<text style="color: #919265;">巨魔</text><br>
-				<text style="color: #FEFE00;">元素</text><br>
-				<text style="color: #E5012A;">矮人</text><br>
+				<text style="color: #2A8501;">野獸 ②④⑥</text>
+					<div id="beastLine" class="colorprogress" >
+					  <div id="beastBar" class="pbar" style="background-color: #2A8501;">
+					    <div id="beastLabel" >0/6</div>
+					  </div>
+					</div>
+				<text style="color: #3D3E3E;">亡靈 ②④</text>
+					<div id="undeadLine" class="colorprogress" >
+					  <div id="undeadBar" class="pbar" style="background-color: #3D3E3E;">
+					    <div id="undeadLabel" >0/4</div>
+					  </div>
+					</div>
+				<text style="color: #4747C7;">娜迦 ②④</text>
+					<div id="nagaLine" class="colorprogress" >
+					  <div id="nagaBar" class="pbar" style="background-color: #4747C7;">
+					    <div id="nagaLabel" >0/4</div>
+					  </div>
+					</div>
+				<text style="color: #D20003;">龍 ③</text>
+					<div id="dragonLine" class="colorprogress" >
+					  <div id="dragonBar" class="pbar" style="background-color: #D20003;">
+					    <div id="dragonLabel" >0/3</div>
+					  </div>
+					</div>
+				<text style="color: #FFFFFF;">人類 ②④⑥</text>
+					<div id="humanLine" class="colorprogress" >
+					  <div id="humanBar" class="pbar" style="background-color: #000000;">
+					    <div id="humanLabel" >0/6</div>
+					  </div>
+					</div>
+				<text style="color: #E5012A;">獸人②④</text>
+					<div id="orcLine" class="colorprogress" >
+					  <div id="orcBar" class="pbar" style="background-color: #E5012A;">
+					    <div id="orcLabel" >0/4</div>
+					  </div>
+					</div>
+				<text style="color: #0178E1;">精靈 ②④⑥</text>
+					<div id="elfLine" class="colorprogress" >
+					  <div id="elfBar" class="pbar" style="background-color: #0178E1;">
+					    <div id="elfLabel" >0/6</div>
+					  </div>
+					</div>
+				<text style="color: #919265;">巨魔 ②④</text>
+					<div id="trollLine" class="colorprogress" >
+					  <div id="trollBar" class="pbar" style="background-color: #919265;">
+					    <div id="trollLabel" >0/4</div>
+					  </div>
+					</div>
+				<text style="color: #FEFE00;">元素 ②</text>
+					<div id="elementLine" class="colorprogress" >
+					  <div id="elementBar" class="pbar" style="background-color: #FEFE00;">
+					    <div id="elementLabel" >0/2</div>
+					  </div>
+					</div>
+				<!--<text style="color: #E5012A;">矮人</text>
+					<div id="dwarfLine" class="colorprogress" >
+					  <div id="dwarfBar" class="pbar" style="background-color: #E5012A;">
+					    <div id="dwarfLabel" >0/6</div>
+					  </div>
+					</div>-->
 			</text>
 		</div>
 		<div id="jobCountText" style="display: none;">
-			<text style="font-weight: bold;font-size: 18px; text-shadow: black 0.1em 0.1em 0.2em;">	
-				<text style="color: #B38C62;">戰士</text><br>
-				<text style="color: #68CCEF;">法師</text><br>
-				<text style="color: #E7DD5D;">刺客</text><br>
-				<text style="color: #98BD65;">獵人</text><br>
-				<text style="color: #E382AD;">騎士</text><br>
-				<text style="color: #E9720F;">德魯伊</text><br>
-				<text style="color: #9382C9;">術士</text><br>
-				<text style="color: #1336A2;">薩滿祭司</text><br>
-				<text style="color: #360E43;">惡魔獵手</text><br>
+			<text style="font-weight: bold;font-size: 18px; text-shadow: black 0.1em 0.1em 0.2em;">
+			<!--①②③④⑤⑥⑦-->	
+				<text style="color: #B38C62;">戰士 ③⑥</text><br>
+					<div id="warriorLine" class="colorprogress" >
+					  <div id="warriorBar" class="pbar" style="background-color: #B38C62;">
+					    <div id="warriorLabel" >0/6</div>
+					  </div>
+					</div>
+				<text style="color: #68CCEF;">法師 ③⑥</text><br>
+					<div id="mageLine" class="colorprogress" >
+					  <div id="mageBar" class="pbar" style="background-color: #68CCEF;">
+					    <div id="mageLabel" >0/6</div>
+					  </div>
+					</div>
+				<text style="color: #E7DD5D;">刺客 ③⑥</text><br>
+					<div id="assassinLine" class="colorprogress" >
+					  <div id="assassinBar" class="pbar" style="background-color: #E7DD5D;">
+					    <div id="assassinLabel" >0/6</div>
+					  </div>
+					</div>
+				<text style="color: #98BD65;">獵人 ③⑥</text><br>
+					<div id="hunterLine" class="colorprogress" >
+					  <div id="hunterBar" class="pbar" style="background-color: #98BD65;">
+					    <div id="hunterLabel" >0/6</div>
+					  </div>
+					</div>
+				<text style="color: #E382AD;">騎士 ②④⑥</text><br>
+					<div id="knightLine" class="colorprogress" >
+					  <div id="knightBar" class="pbar" style="background-color: #E382AD;">
+					    <div id="knightLabel" >0/6</div>
+					  </div>
+					</div>
+				<text style="color: #E9720F;">德魯伊 ②④</text><br>
+					<div id="druidLine" class="colorprogress" >
+					  <div id="druidBar" class="pbar" style="background-color: #E9720F;">
+					    <div id="druidLabel" >0/4</div>
+					  </div>
+					</div>
+				<text style="color: #9382C9;">術士 ③⑥</text><br>
+					<div id="warlockLine" class="colorprogress" >
+					  <div id="warlockBar" class="pbar" style="background-color: #9382C9;">
+					    <div id="warlockLabel" >0/6</div>
+					  </div>
+					</div>
+				<text style="color: #1336A2;">薩滿祭司 ②</text><br>
+					<div id="shamanLine" class="colorprogress" >
+					  <div id="shamanBar" class="pbar" style="background-color: #1336A2;">
+					    <div id="shamanLabel" >0/2</div>
+					  </div>
+					</div>
+				<text style="color: #B8860B;">工匠 ②④</text><br>
+					<div id="mechLine" class="colorprogress" >
+					  <div id="mechBar" class="pbar" style="background-color: #B8860B;">
+					    <div id="mechLabel" >0/4</div>
+					  </div>
+					</div>
+				<!--<text style="color: #360E43;">惡魔獵手 </text><br>-->
 			</text>
 		</div>
 	</div>
+	<script src="lib/jquery-slim.min.js"></script>
 	<script src="lib/d3.v3.min.js"></script>
+	<script src="src/originData.js"></script> 
 	<script src="src/main.js"></script>
 	<script src="src/language.js"></script> 
 </body>

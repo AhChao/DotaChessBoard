@@ -72,7 +72,7 @@ function refreshAddTable()
 {
 	var tableContent = [];
 	var item = 1;
-	while(item<53)
+	while(item<originData.length)
 	{
 		tableContent.push(item);
 		item++;
@@ -168,9 +168,9 @@ function removeChess(chessNo)
 function updateProgress()
 {	
 	var raceValue = [0,0,0,0,0,0,0,0,0,0,0];
-	var jobValue = [0,0,0,0,0,0,0,0,0,0];
+	var jobValue = [0,0,0,0,0,0,0,0,0,0,0];
 	var raceLimit = [0,6,6,4,4,3,6,4,6,4,2];
-	var jobLimit = [0,6,6,6,6,6,4,6,2,4];
+	var jobLimit = [0,6,6,6,6,6,4,6,2,4,2];
 	var raceName = ["","goblin","beast","undead","naga","dragon","human","orc","elf","troll","element"];
 	var jobName = ["","warrior","mage","assassin","hunter","knight","druid","warlock","shaman","mech"];
 	for(var i in fieldChess)

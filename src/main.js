@@ -24,15 +24,19 @@ function barMove(barName,now,target)
 {
     var elem = document.getElementById(barName+"Bar"); 
     var width = 1;
-    var id = setInterval(frame, 10);
-    document.getElementById(barName+"Label").innerHTML = now +"/" + target;
+    var id;
+    if(document.getElementById(barName+"Label")!=null)
+    {
+    	id = setInterval(frame, 10);
+	    document.getElementById(barName+"Label").innerHTML = now +"/" + target;
+    }
     function frame() {
     	if (now == 0)
     	{
     		elem.style.width = width + '%'; 
     		clearInterval(id);
     	}
-        if (width >= ((now/target)*100)) 
+        else if (width >= ((now/target)*100)) 
         {
             clearInterval(id);
         }
@@ -172,7 +176,7 @@ function updateProgress()
 	var raceLimit = [0,6,6,4,4,3,6,4,6,4,4];
 	var jobLimit = [0,9,6,6,6,6,4,6,2,4,2];
 	var raceName = ["","goblin","beast","undead","naga","dragon","human","orc","elf","troll","element"];
-	var jobName = ["","warrior","mage","assassin","hunter","knight","druid","warlock","shaman","mech"];
+	var jobName = ["","warrior","mage","assassin","hunter","knight","druid","warlock","shaman","mech","demonHunter"];
 	for(var i in fieldChess)
 	{
 		for(var j in originData[fieldChess[i]][0])

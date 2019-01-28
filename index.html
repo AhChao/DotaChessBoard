@@ -15,8 +15,11 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-	<h1 id="pageTitle">刀塔自走棋記錄板</h1>
+	<h1 id="pageTitle" style="display: inline;">刀塔自走棋記錄板</h1>
+	<h6 style="display: inline;">Latest Update 190128</h6>
+
 	<div>
+		<br>
         <h2 style="display : inline;">Language</h2>
         <select id="languageSwitchSelect" onchange="languageSetting(this.value)">Language
           <option value="0" selected="selected">Traditional Chinese</option>
@@ -47,6 +50,7 @@
 					<option id="optElf" value="8" style="color: #0178E1;">精靈</option>
 					<option id="optTro" value="9" style="color: #919265;">巨魔</option>
 					<option id="optEle" value="10" style="color: #FFD700;">元素</option>
+					<option id="optDev" value="12" style="color: #7D04C7;">惡魔</option>
 					<!--<option value="11" style="color: #E5012A;">矮人</option>-->
             </select>
             <select id="optJob" onchange="refreshAddTable()">職業
@@ -129,10 +133,10 @@
 					    <div id="trollLabel" >0/4</div>
 					  </div>
 					</div>
-				<text id="lbEle" style="color: #FEFE00;">元素 ②</text>
+				<text id="lbEle" style="color: #FEFE00;">元素 ②④</text>
 					<div id="elementLine" class="colorprogress" >
 					  <div id="elementBar" class="pbar" style="background-color: #FEFE00;">
-					    <div id="elementLabel" >0/2</div>
+					    <div id="elementLabel" >0/4</div>
 					  </div>
 					</div>
 				<!--<text style="color: #E5012A;">矮人</text>
@@ -146,10 +150,10 @@
 		<div id="jobCountText" style="display: none;">
 			<text style="font-weight: bold;font-size: 18px; text-shadow: black 0.1em 0.1em 0.2em;">
 			<!--①②③④⑤⑥⑦-->	
-				<text id="lbWarr" style="color: #B38C62;">戰士 ③⑥</text><br>
+				<text id="lbWarr" style="color: #B38C62;">戰士 ③⑥⑨</text><br>
 					<div id="warriorLine" class="colorprogress" >
 					  <div id="warriorBar" class="pbar" style="background-color: #B38C62;">
-					    <div id="warriorLabel" >0/6</div>
+					    <div id="warriorLabel" >0/9</div>
 					  </div>
 					</div>
 				<text id="lbMag" style="color: #68CCEF;">法師 ③⑥</text><br>

@@ -5,7 +5,7 @@ function languageSetting(lan)
 	"pageTitle","fieldText","addBtn","fieldAblity","raceText","jobText","clearBtn",
 	"optAllRace","optGno","optBea","optUnd","optNag","optDra","optHum","optOrc","optElf","optTro","optEle","optDev",
 	"optAllJob","optWarr","optMag","optAss","optHun","optKni","optDru","optWar","optSha","optMec","optDem",
-	"lbGob","lbBea","lbUnd","lbNag","lbDra","lbHun","lbOrc","lbElf","lbTro","lbEle",
+	"lbGob","lbBea","lbUnd","lbNag","lbDra","lbHum","lbOrc","lbElf","lbTro","lbEle",
 	"lbWarr","lbMag","lbAss","lbHun","lbKni","lbDru","lbWar","lbSha","lbMec","lbDem",
 	]
 	var pageText = [
@@ -28,6 +28,7 @@ function languageSetting(lan)
 	refreshFieldTable();
 	for(var i in settingList)
 	{
+		if(pageText[lan][i]=="獵人 ③⑥") console.log(settingList[i]);
 		d3.select("#"+settingList[i]).text(pageText[lan][i]);
 		/*if(document.getElementById(settingList[i])!=null)
 			document.getElementById(settingList[i]).innerHTML = pageText[lan][i];*/

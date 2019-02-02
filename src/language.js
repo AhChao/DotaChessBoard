@@ -28,7 +28,6 @@ function languageSetting(lan)
 	refreshFieldTable();
 	for(var i in settingList)
 	{
-		if(pageText[lan][i]=="獵人 ③⑥") console.log(settingList[i]);
 		d3.select("#"+settingList[i]).text(pageText[lan][i]);
 		/*if(document.getElementById(settingList[i])!=null)
 			document.getElementById(settingList[i]).innerHTML = pageText[lan][i];*/

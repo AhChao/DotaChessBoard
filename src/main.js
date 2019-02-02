@@ -152,10 +152,10 @@ function addChess(chessNo)
 	{
 		if(fieldChess[i]==chessNo)
 			return 0;
-	}
+	}	
 	fieldChess.push(chessNo);
 	refreshFieldTable();
-	updateProgress();
+	updateProgress(chessNo);
 }
 
 function removeChess(chessNo)
@@ -169,7 +169,7 @@ function removeChess(chessNo)
 	updateProgress();
 }
 
-function updateProgress()
+function updateProgress(newAddChessNo)
 {	
 	var raceValue = [0,0,0,0,0,0,0,0,0,0,0];
 	var jobValue = [0,0,0,0,0,0,0,0,0,0,0];
@@ -194,6 +194,7 @@ function updateProgress()
 		if(i==0) continue;
 		barMove(jobName[i],jobValue[i],jobLimit[i]);
 	}
+	if(newAddChessNo!=null) toastCheck(raceValue,jobValue,newAddChessNo);
 }
 
 function addBtnClick()
@@ -213,4 +214,88 @@ function clearFilter()
 	document.getElementById("optRace").selectedIndex = 0;
 	document.getElementById("optJob").selectedIndex = 0;
 	refreshAddTable();
+}
+
+function myFunction() {
+  // Get the snackbar DIV
+  var x = document.getElementById("snackbar");
+
+  // Add the "show" class to DIV
+  x.className = "show";
+
+  // After 3 seconds, remove the show class from DIV
+  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+
+function toastCheck(raceStatus,jobStatus,addOne)
+{
+	//addOne should be the added chessNo to get job,race
+	var raceGate = [[-1],[3,6],[2,4,6],[2,4],[2,4],[3],[2,4,6],[2,4],[3,6],[2,4],[2,4]];
+	var jobGate = [[-1],[3,6,9],[3,6],[3,6],[3,6],[2,4,6],[2,4],[3,6],[2],[2,4],[2]];
+	var numberText = ["0","①","②","③","④","⑤","⑥","⑦","⑧","⑨","⑩"];
+	var textShow = "";	
+	var triggerText = [" 發動！"," is Trigger!"];
+	var raceText = [["","地精","野獸","亡靈","娜迦","龍","人類","獸人","精靈","巨魔","元素","惡魔"],["-","Goblin","Beast","Undead","Naga","Dragon","Human","Orc","Elf","Troll","Element","Demon"]];
+	var jobText = [["","戰士","法師","刺客","獵人","騎士","德魯伊","術士","薩滿祭司","工匠","惡魔獵人"],["-","Warrior","Mage","Assassin","Hunter","Knight","Druid","Warlock","Shaman","Mech","Demon Hunter"]];
+	var languageValue = 0;
+	if(nowLanguage=="ch") languageValue = 0;
+	else languageValue = 1;
+
+	//race = originData[addOne][0] / job = originData[addOne][1]
+	if(originData[addOne][0]!=-1)
+	{
+		if(originData[addOne][0].length>1)
+		{
+			for(var i in raceGate[originData[addOne][0][0]])
+			{
+				if(raceStatus[originData[addOne][0][0]] == raceGate[originData[addOne][0][0]][i])
+				{
+					textShow=textShow+raceText[languageValue][originData[addOne][0][0]]+" "+numberText[raceGate[originData[addOne][0][0]][i]]+triggerText[languageValue]+"<br>";
+					break;
+				}
+				
+			}
+			for(var i in raceGate[originData[addOne][0][1]])
+			{
+				if(raceStatus[originData[addOne][0][1]] == raceGate[originData[addOne][0][1]][i])
+				{
+					textShow=textShow+raceText[languageValue][originData[addOne][0][1]]+" "+numberText[raceGate[originData[addOne][0][1]][i]]+triggerText[languageValue]+"<br>";
+					break;
+				}				
+			}
+		}
+		else
+		{
+			for(var i in raceGate[originData[addOne][0]])
+			{
+				if(raceStatus[originData[addOne][0]] == raceGate[originData[addOne][0]][i])
+				{
+					textShow=textShow+raceText[languageValue][originData[addOne][0]]+" "+numberText[raceGate[originData[addOne][0]][i]]+triggerText[languageValue]+"<br>";
+					break;
+				}				
+			}
+		}				
+	}
+
+	if(originData[addOne][1]!=-1)
+	{
+		for(var i in jobGate[originData[addOne][1]])
+		{
+			if(jobStatus[originData[addOne][1]] == jobGate[originData[addOne][1]][i])
+			{
+				textShow=textShow+jobText[languageValue][originData[addOne][1]]+" "+numberText[jobGate[originData[addOne][1]][i]]+triggerText[languageValue]+"<br>";
+				break;
+			}			
+		}
+	}
+
+	if(textShow!="")//有要顯示的訊息
+	{
+		var x = document.getElementById("snackbar");
+		// Add the "show" class to DIV
+		x.className = "show";
+		x.innerHTML = textShow;
+		// After 3 seconds, remove the show class from DIV
+		setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+	}	
 }
